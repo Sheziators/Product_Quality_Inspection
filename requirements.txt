@@ -1,8 +1,8 @@
-numpy
-tensorflow
 streamlit
-matplotlib
-requests
+tensorflow==2.11.0
+numpy
 Pillow
+matplotlib
 scikit-learn
 streamlit-lottie
+requests
