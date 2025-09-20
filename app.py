@@ -1,11 +1,9 @@
 import numpy as np
 import tensorflow as tf
 import streamlit as st
-import matplotlib.pyplot as plt
 import requests
 from PIL import Image
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
-from tensorflow.keras.preprocessing import image
 from sklearn.metrics.pairwise import cosine_similarity
 from streamlit_lottie import st_lottie
 
@@ -19,7 +17,6 @@ def load_lottie_url(url):
 # App title and introduction
 st.title("🔍 Product Quality Inspection System")
 st.write("This is a simple web app to upload images and check for product matches.")
-st.write("👨‍💻 Developed by **Tathagat Shaw**, Data Scientist & ML Engineer.")
 
 # Load and display animation
 lottie_animation = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_jcikwtux.json")
@@ -82,7 +79,8 @@ if new_image_file and len(reference_features) > 0:
     with col1:
         st.image(new_image, caption="Uploaded Image", use_container_width=True)
     with col2:
-        st.image(Image.open(closest_match), caption="Closest Match", use_container_width=True)
+        closest_img = Image.open(closest_match).convert("RGB")
+        st.image(closest_img, caption="Closest Match", use_container_width=True)
 
     if is_match:
         st.success("✅ The uploaded product matches the reference product.")
